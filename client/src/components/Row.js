@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function Row({info}) {
+export default function Row({ rows }) {
   return (
     <tr>
-      <td>{info.date}</td>
-      <td>{info.name}</td>
-      <td>{info.number}</td>
-      <td>{info.distant}</td>
+      <td>{rows.date}</td>
+      <td>{rows.name}</td>
+      <td>{rows.number}</td>
+      <td>{rows.distant}</td>
     </tr>
   )
 }
