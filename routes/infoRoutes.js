@@ -3,6 +3,7 @@ const router = new Router
 const infoController = require('../controllers/infoController')
 
 
-router.get('/', infoController.getInfo)
+router.get('/all', infoController.getInfo)
+router.post('/query', infoController.getQueryInfo)
 
 module.exports = router

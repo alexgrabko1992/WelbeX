@@ -1,6 +1,19 @@
 import React from 'react'
+import infoController from '../controllers/InfoController'
 
-export default function Filter() {
+export default function Filter({ setRows, setLoad }) {
+  const handleClick = async () => {
+    const columnValue = document.getElementById("columns").value
+    const optionValue = document.getElementById("options").value
+    const filterValue = document.getElementById("value").value
+
+    const query = {
+      column: columnValue,
+      option: optionValue,
+      filter: filterValue
+    }
+    infoController.getFilteredInfo(query)
+  }
   return (
     <div>
           <label htmlFor="columns">Choose the column:</label>
@@ -21,7 +34,7 @@ export default function Filter() {
           <label htmlFor="value">Input value for filter:</label>
           <input type="text" id="value" name="value"></input>
           <br />
-          <button>Filter</button>
+          <button onClick={handleClick}>Filter</button>
     </div>
   )
 }

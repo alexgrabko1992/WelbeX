@@ -1,20 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import Row from './Row'
-import infoController from '../controllers/InfoController'
 import Pagination from './Pagination'
 
-export default function Table() {
-  const [rows, setRows] = useState([])
-  const [load, setLoad] = useState(false)
+export default function Table({rows, load}) {
   const [currPage, setCurrPage] = useState(1)
   const [rowsPerPage] = useState(10)
-
-  useEffect(() => {
-    infoController.getInfo().then((res) => {
-      setLoad(true)
-      setRows(res)
-    })
-  }, [])
 
   const lastRowIndex = currPage * rowsPerPage
   const firstRowIndex = lastRowIndex - rowsPerPage
