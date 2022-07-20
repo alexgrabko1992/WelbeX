@@ -3,22 +3,30 @@ import infoController from '../controllers/InfoController'
 
 export default function Filter({ setRows, setLoad, setCurrPage }) {
   const handleClick = async () => {
-    setLoad(false)
+    // Данные с формы для сортировки
     const columnValue = document.getElementById("columns").value
     const optionValue = document.getElementById("options").value
     const filterValue = document.getElementById("value").value
 
-    const query = {
-      column: columnValue,
-      option: optionValue,
-      filter: filterValue
+    // Проверка на валидность данных
+    if (columnValue && optionValue && filterValue) {
+      setLoad(false)
+      const query = {
+        column: columnValue,
+        option: optionValue,
+        filter: filterValue
+      }
+      // Получение отфильтрованных значений
+      infoController.getFilteredInfo(query).then((res) => {
+        setRows(res)
+        setLoad(true)
+        setCurrPage(1)
+      })
+    } else {
+      alert("Input valid value")
     }
-    infoController.getFilteredInfo(query).then((res) => {
-      setRows(res)
-      setLoad(true)
-      setCurrPage(1)
-    })
   }
+  // Кнопка перезагрузки таблицы
   const handleClickRefresh = async () => {
     infoController.getInfo().then((res) => {
       setRows(res)

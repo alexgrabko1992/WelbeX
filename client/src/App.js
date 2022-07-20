@@ -9,6 +9,7 @@ function App() {
   const [currPage, setCurrPage] = useState(1)
 
   useEffect(() => {
+    // Получаем данные для отображения всей таблицы
     infoController.getInfo().then((res) => {
       setLoad(true)
       setRows(res)
