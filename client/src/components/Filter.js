@@ -19,6 +19,13 @@ export default function Filter({ setRows, setLoad, setCurrPage }) {
       setCurrPage(1)
     })
   }
+  const handleClickRefresh = async () => {
+    infoController.getInfo().then((res) => {
+      setRows(res)
+      setLoad(true)
+      setCurrPage(1)
+    })
+  }
   return (
     <div>
           <label htmlFor="columns">Choose the column:</label>
@@ -40,6 +47,7 @@ export default function Filter({ setRows, setLoad, setCurrPage }) {
           <input type="text" id="value" name="value"></input>
           <br />
           <button onClick={handleClick}>Filter</button>
+          <button onClick={handleClickRefresh}>Refresh</button>
     </div>
   )
 }
