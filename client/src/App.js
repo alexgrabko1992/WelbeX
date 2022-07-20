@@ -6,6 +6,7 @@ import infoController from './controllers/InfoController'
 function App() {
   const [rows, setRows] = useState([])
   const [load, setLoad] = useState(false)
+  const [currPage, setCurrPage] = useState(1)
 
   useEffect(() => {
     infoController.getInfo().then((res) => {
@@ -15,8 +16,8 @@ function App() {
   }, [])
   return (
     <div>
-      <Filter setRows={setRows} setLoad={setLoad} />
-      <Table rows={rows} load={load} />
+      <Filter setRows={setRows} setLoad={setLoad} setCurrPage={setCurrPage} />
+      <Table rows={rows} load={load} currPage={currPage} setCurrPage={setCurrPage} />
     </div>
   );
 }

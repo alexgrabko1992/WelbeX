@@ -1,8 +1,9 @@
 import React from 'react'
 import infoController from '../controllers/InfoController'
 
-export default function Filter({ setRows, setLoad }) {
+export default function Filter({ setRows, setLoad, setCurrPage }) {
   const handleClick = async () => {
+    setLoad(false)
     const columnValue = document.getElementById("columns").value
     const optionValue = document.getElementById("options").value
     const filterValue = document.getElementById("value").value
@@ -12,7 +13,11 @@ export default function Filter({ setRows, setLoad }) {
       option: optionValue,
       filter: filterValue
     }
-    infoController.getFilteredInfo(query)
+    infoController.getFilteredInfo(query).then((res) => {
+      setRows(res)
+      setLoad(true)
+      setCurrPage(1)
+    })
   }
   return (
     <div>

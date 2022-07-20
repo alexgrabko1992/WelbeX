@@ -2,8 +2,7 @@ import React, { useState} from 'react'
 import Row from './Row'
 import Pagination from './Pagination'
 
-export default function Table({rows, load}) {
-  const [currPage, setCurrPage] = useState(1)
+export default function Table({rows, load, currPage, setCurrPage}) {
   const [rowsPerPage] = useState(10)
 
   const lastRowIndex = currPage * rowsPerPage

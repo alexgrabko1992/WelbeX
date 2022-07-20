@@ -7,7 +7,25 @@ class InfoController {
     }
     async getQueryInfo(req, res) {
         const query = req.body
-        res.json(query)
+        let info;
+        switch (query.option) {
+            case 'equal':
+                info = await db.query(`SELECT * FROM info WHERE ${query.column} = '${query.filter}'`)
+                res.json(info.rows)
+                break
+            case 'include':
+                info = await db.query(`SELECT * FROM info WHERE CAST(${query.column} as TEXT) LIKE '%${query.filter}%'`)
+                res.json(info.rows)
+                break
+            case 'more':
+                info = await db.query(`SELECT * FROM info WHERE ${query.column} > '${query.filter}'`)
+                res.json(info.rows)
+                break
+            case 'less':
+                info = await db.query(`SELECT * FROM info WHERE ${query.column} < '${query.filter}'`)
+                res.json(info.rows)
+                break
+        }
     }
 }
 
