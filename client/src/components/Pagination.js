@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ({ rowsPerPage, totalRows, paginate }) {
+export default function Pagination ({ rowsPerPage, totalRows, paginate }) {
     const pageNumbers = []
 
     for (let i = 1; i <= Math.ceil(totalRows / rowsPerPage); i++) {
